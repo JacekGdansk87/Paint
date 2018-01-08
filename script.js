@@ -15,6 +15,11 @@ canvas.addEventListener('mousedown', function()
 
 canvas.addEventListener('mouseup', function() { down = false; });
 
+var size =  document.getElementById('brushSize');
+size.addEventListener("change",changeBrushSize);
+size.addEventListener("mousemove",changeBrushSize);
+
+
 function draw(e)
 {
     xPos = e.clientX - canvas.offsetLeft;
@@ -25,12 +30,11 @@ function draw(e)
             context.lineTo(xPos, yPos);
             context.stroke();
         }
-    
 } 
 
 function changeColor(color) {context.strokeStyle = color; context.fillStyle = color; }
 function clearCanvas() {context.clearRect(0,0, canvas.width, canvas.height);}
-function changeBrushSize(size){context.lineWidth = size;}
+function changeBrushSize(size){context.lineWidth = this.value;}
 function fillCanvas() { context.fillRect(0, 0, canvas.width, canvas.height);}
 function changeBrushStyle(brushStyle) { context.lineCap = brushStyle; }
 function triggerClick() {document.getElementById('file').click(); }
